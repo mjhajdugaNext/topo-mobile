@@ -43,8 +43,8 @@ function HomeScreen(): JSX.Element {
   );
 }
 
-export default function HomeScreenWithDrawer({ navigation }) {
-  console.log('rendering HomeScreenWithDrawer')
+export default function Authenticated({ navigation }) {
+  console.log('rendering Authenticated module')
   return (
     <Drawer.Navigator
       initialRouteName="Home"
