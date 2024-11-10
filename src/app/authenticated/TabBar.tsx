@@ -13,7 +13,7 @@ import {
   MaterialIcons,
 } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
-import colors from "@/shared/enums/colors";
+import colors from "@/src/shared/enums/colors";
 
 export default function TabBar({ state, descriptors, navigation }) {
   const [isKeyboardVisible, setKeyboardVisible] = React.useState(false);
