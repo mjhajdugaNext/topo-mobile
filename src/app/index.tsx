@@ -7,7 +7,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { navigationRef } from "../shared/utils/rootNavigation";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NotifierWrapper } from "react-native-notifier";
-import { MainScreens } from "@/shared/enums/shared.interface";
+import { MainScreens } from "@/src/shared/enums/shared.interface";
 import LoginScreen from "./notAuthenticated/LoginScreen";
 import HomeScreen from "./authenticated/HomeScreen";
 

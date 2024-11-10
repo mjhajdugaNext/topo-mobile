@@ -5,7 +5,7 @@ import {
 } from "@react-navigation/drawer";
 import { useDispatch, useSelector } from "react-redux";
 import { Dimensions, View } from "react-native";
-import colors from "@/shared/enums/colors";
+import colors from "@/src/shared/enums/colors";
 
 export default function CustomDrawerContent(props) {
   const dispatch = useDispatch();
