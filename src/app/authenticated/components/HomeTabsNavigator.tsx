@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import colors from '@/src/shared/enums/colors';
 
 // Import screens
@@ -16,7 +16,7 @@ export default function HomeTabsNavigator(): JSX.Element {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          if (route.name === 'Home') {
+          if (route.name === 'HomeTab') {
             return <Ionicons name="home" size={size} color={color} />;
           } else if (route.name === 'Crags') {
             return <FontAwesome5 name="mountain" size={size} color={color} />;
@@ -43,7 +43,7 @@ export default function HomeTabsNavigator(): JSX.Element {
         headerShown: false,
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="HomeTab" component={HomeScreen} options={{ title: "Home" }} />
       <Tab.Screen name="Crags" component={CragsScreen} />
       <Tab.Screen name="Routes" component={RoutesScreen} />
       <Tab.Screen name="About" component={AboutScreen} />

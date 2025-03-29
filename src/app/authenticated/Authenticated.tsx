@@ -18,7 +18,16 @@ function DrawerButton({ navigation }: DrawerButtonProps) {
   return (
     <TouchableOpacity
       style={{ padding: 10 }}
-      onPress={() => navigation.openDrawer()}
+      onPress={() => {
+        try {
+          // Use the drawer context directly
+          if (navigation && typeof navigation.openDrawer === 'function') {
+            navigation.openDrawer();
+          }
+        } catch (error) {
+          console.log('Error opening drawer:', error);
+        }
+      }}
     >
       <Ionicons name="menu" size={28} color="white" />
     </TouchableOpacity>
@@ -61,6 +70,7 @@ export default function Authenticated({ navigation }: AuthenticatedProps) {
         component={HomeTabsNavigator}
         options={{
           title: "Topo Mobile",
+          headerShown: false, // Hide the header to avoid duplicate headers
         }}
       />
     </Drawer.Navigator>
