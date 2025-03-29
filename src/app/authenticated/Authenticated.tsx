@@ -2,9 +2,10 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { View, Text } from "react-native";
-import CustomDrawerContent from "./DrawerContent";
-import TabBar from "./TabBar";
+import CustomDrawerContent from "./components/DrawerContent";
+import TabBar from "./components/TabBar";
 import colors from "../../shared/enums/colors";
+import { AuthenticatedScreens } from "@/src/shared/enums/shared.interface";
 
 const Tab = createBottomTabNavigator();
 
@@ -47,7 +48,7 @@ export default function Authenticated({ navigation }) {
   console.log('rendering Authenticated module')
   return (
     <Drawer.Navigator
-      initialRouteName="Home"
+      initialRouteName={AuthenticatedScreens.Home}
       screenOptions={{
         headerShown: false,
         drawerLabelStyle: {
@@ -63,7 +64,7 @@ export default function Authenticated({ navigation }) {
         <CustomDrawerContent {...props} stackNavigation={navigation} />
       )}
     >
-      <Drawer.Screen name={'Home'} component={HomeScreen} />
+      <Drawer.Screen name={AuthenticatedScreens.Home} component={HomeScreen} />
     </Drawer.Navigator>
   );
 }

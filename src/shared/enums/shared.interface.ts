@@ -1,5 +1,13 @@
 export enum MainScreens {
+  Authenticated = "Authenticated",
+  NotAuthenticated = "NotAuthenticated",
+}
+
+export enum NonAuthenticatedScreens {
   Login = "Login",
   ForgotPassword = "Forgot Password",
-  _Home = "_Home",
+}
+
+export enum AuthenticatedScreens {
+  Home = "Home",
 }
