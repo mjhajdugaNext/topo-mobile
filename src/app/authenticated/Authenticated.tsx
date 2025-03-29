@@ -1,59 +1,51 @@
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { View, Text } from "react-native";
+import { createDrawerNavigator, DrawerNavigationProp } from "@react-navigation/drawer";
+import { View, Text, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { ParamListBase } from "@react-navigation/native";
 import CustomDrawerContent from "./components/DrawerContent";
-import TabBar from "./components/TabBar";
+import HomeTabsNavigator from "./components/HomeTabsNavigator";
 import colors from "../../shared/enums/colors";
 import { AuthenticatedScreens } from "@/src/shared/enums/shared.interface";
 
-const Tab = createBottomTabNavigator();
-
 const Drawer = createDrawerNavigator();
 
-function EmptyComponent() {
-  return <View />;
+interface DrawerButtonProps {
+  navigation: DrawerNavigationProp<ParamListBase>;
 }
 
-function SearchScreen() {
+function DrawerButton({ navigation }: DrawerButtonProps) {
   return (
-    <View>
-      <Text>SearchScreen</Text>
-    </View>
-  );
-}
-
-function HomeScreen(): JSX.Element {
-  return (
-    <Tab.Navigator
-      tabBar={(props) => <TabBar {...props} />}
-      screenOptions={{ headerShown: false, tabBarHideOnKeyboard: true }}
+    <TouchableOpacity
+      style={{ padding: 10 }}
+      onPress={() => navigation.openDrawer()}
     >
-      <Tab.Screen name="Search screen" component={SearchScreen} />
-      <Tab.Screen
-        name="Drawer"
-        listeners={({ navigation }) => ({
-          tabPress: (e) => {
-            e.preventDefault();
-            navigation.openDrawer();
-          },
-        })}
-        component={EmptyComponent}
-      />
-    </Tab.Navigator>
+      <Ionicons name="menu" size={28} color="white" />
+    </TouchableOpacity>
   );
 }
 
-export default function Authenticated({ navigation }) {
+interface AuthenticatedProps {
+  navigation: DrawerNavigationProp<ParamListBase>;
+}
+
+export default function Authenticated({ navigation }: AuthenticatedProps) {
   console.log('rendering Authenticated module')
   return (
     <Drawer.Navigator
       initialRouteName={AuthenticatedScreens.Home}
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: colors.darkBlue,
+        },
+        headerTintColor: "white",
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+        headerLeft: (props) => <DrawerButton navigation={navigation} />,
         drawerLabelStyle: {
           color: "white",
-          fontFamily: "Wimba",
           fontSize: 16,
         },
         drawerStyle: {
@@ -64,7 +56,13 @@ export default function Authenticated({ navigation }) {
         <CustomDrawerContent {...props} stackNavigation={navigation} />
       )}
     >
-      <Drawer.Screen name={AuthenticatedScreens.Home} component={HomeScreen} />
+      <Drawer.Screen 
+        name={AuthenticatedScreens.Home} 
+        component={HomeTabsNavigator}
+        options={{
+          title: "Topo Mobile",
+        }}
+      />
     </Drawer.Navigator>
   );
 }
